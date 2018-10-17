@@ -138,11 +138,11 @@ func syncFireFunc(entry *logrus.Entry, hook *ElasticHook, indexName string) erro
 	}
 
 	msg := struct {
-		Host      string
-		Timestamp string `json:"@timestamp"`
-		Message   string
-		Data      logrus.Fields
-		Level     string
+		Host      string        `json:"host"`
+		Timestamp string        `json:"@timestamp"`
+		Message   string        `json:"message"`
+		Fields    logrus.Fields `json:"fields"`
+		Level     string        `json:"level"`
 	}{
 		hook.host,
 		entry.Time.UTC().Format(time.RFC3339Nano),
